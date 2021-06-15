@@ -1,0 +1,49 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editMode ? 'Cập nhật danh mục sản phẩm' : 'Thêm danh mục sản phẩm'" subheader="Bạn có thể thêm hoặc chỉnh sửa danh mục sản phẩm ở đây.">Content
+        <div class="p-grid p-mb-5">
+            <div class="p-col-12">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left"></div>
+                    <div class="p-toolbar-group-right">
+                        <p-button [label]="editMode ? 'Cập nhật' : 'Tạo'" 
+                                  icon="pi pi-plus"
+                                  styleClass="p-button-primary p-mr-2"
+                                  (click)="onSubmit()">
+                        </p-button>
+                        
+                        <p-button label="Hủy" 
+                                  icon="pi pi-arrow-circle-left"
+                                  styleClass="p-button-secondary"
+                                  (click)="onCancle()"
+                                  >
+                        </p-button>
+                    </div>
+                </p-toolbar>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <form [formGroup]="form">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="name">Tên Danh Mục Sản Phẩm</label>
+                            <input formControlName="name" id="name" type="text" pInputText> 
+                            <small *ngIf="categoryForm.name.invalid && isSubmitted" class="p-error">Bắt buộc</small>
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="icon">Biểu Tượng</label>
+                            <input formControlName="icon" id="icon" type="text" pInputText> 
+                            <small *ngIf="categoryForm.icon.invalid && isSubmitted" class="p-error">Bắt buộc</small>
+                        </div>
+                        <div class="p-filed p-col">
+                            <label for="color">Color</label> <br />
+                            <p-colorPicker formControlName="color"></p-colorPicker>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+    </p-card>
+</div>

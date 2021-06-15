@@ -1,0 +1,21 @@
+<div class="order-summary">
+    <h3>Tổng đơn hàng</h3>
+    <div class="summary-price">
+      <span>Giá sản phẩm</span>
+      <span>{{ totalPrice | currency }}</span>
+    </div>
+    <div class="summary-price">
+      <span>Đóng gói & Vận chuyển</span>
+      <span class="free">Miễn phí</span>
+    </div>
+    <div class="to-checkout">
+      <div class="summary-price">
+        <span>Tổng giá</span>
+        <span>{{ totalPrice | currency }}</span>
+      </div>
+      <div class="checkout-button" *ngIf="!isCheckout" >
+        <p-button label="Thanh toán" (onClick)="navitageToCheckout()" ></p-button>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,94 @@
+<p-toast></p-toast>
+<div class="admin-page" *ngIf="order">
+  <p-card [header]="'Đơn hàng'" subheader="Bạn có thể xem chi tiết đơn hàng ở đây.">
+ 
+    <p-panel [toggleable]="true" styleClass="p-mb-4">
+        <ng-template  pTemplate="header">
+            <h5 style="color: cornflowerblue;" class="p-text-bold">Chi tiết đơn hàng</h5>
+        </ng-template>
+        <div class="p-grid">
+            <div class="p-col-4">
+                <h6 class="p-text-bold">Order Id</h6>
+                <p>{{order.id}}</p>
+            </div>
+            <div class="p-col-4">
+                <h6 class="p-text-bold">Ngày đặt</h6>
+                <p>{{order.dateOrdered | date:'short'}}</p>
+            </div>
+            <div class="p-col-4">
+                <h6 class="p-text-bold">Trạng thái</h6>
+                <p-dropdown [options]="orderStatuses" 
+                            optionLabel = "name" 
+                            optionValue = "id"
+                            (onChange)="onStatusChange($event)"
+                            [(ngModel)] = "selectedStatus"></p-dropdown>
+            </div>
+            <div class="p-col-4">
+                <h6 class="p-text-bold">Tổng giá</h6>
+                <p>{{order.totalPrice | currency}}</p>
+            </div>
+
+        </div>
+    </p-panel>
+
+    <p-panel [toggleable]="true" styleClass="p-mb-4">
+        <ng-template  pTemplate="header">
+            <h5 class="p-text-bold" style="color: cornflowerblue;">Các sản phẩm</h5>
+        </ng-template>
+        <div class="p-grid p-mb-4">
+            <div class="p-col-2 p-text-bold">Tên</div>
+            <div class="p-col-2 p-text-bold">Thương hiệu</div>
+            <div class="p-col-2 p-text-bold">Danh mục sản phẩm</div>
+            <div class="p-col-2 p-text-bold">Giá</div>
+            <div class="p-col-2 p-text-bold">Số lượng</div>
+            <div class="p-col-2 p-text-bold">Tổng giá</div>
+        </div>
+
+        <div class="p-grid p-mb-4" *ngFor="let orderItem of order.orderItems">
+            <div class="p-col-2">{{orderItem.product.name}}</div>
+            <div class="p-col-2">{{orderItem.product.brand}}</div>
+            <div class="p-col-2">{{orderItem.product.category.name}}</div>
+            <div class="p-col-2">{{orderItem.product.price | currency}}</div>
+            <div class="p-col-2">{{orderItem.quantity}}</div>
+            <div class="p-col-2">{{orderItem.product.price * orderItem.quantity | currency }}</div>
+        </div>
+        <div class="p-grid" style="color: green;">
+            <div class="p-col-2 p-offset-8 p-text-bold">
+                Tổng giá đơn hàng:
+            </div>
+            <div class="p-col-2 p-text-bold">
+                {{order.totalPrice | currency}}
+            </div>
+        </div>
+    </p-panel>
+    
+    <p-panel [toggleable]="true" styleClass="p-mb-4">
+        <ng-template  pTemplate="header">
+            <h5 class="p-text-bold" style="color: cornflowerblue;">Địa chỉ</h5>
+        </ng-template>
+        <div class="p-grid">
+            <div class="p-col-4">
+                <h6 p-text-bold>Địa chỉ</h6>
+                <p>
+                    {{order.shippingAddress1}}<br />
+                    {{order.shippingAddress2}}<br />
+                    {{order.zip}} {{order.city}} <br />
+                    {{order.country}}
+                </p>
+            </div>
+            <div class="p-col-4">
+                <h6 p-text-bold>Thông tin khách hàng</h6>
+                <p>
+                    {{order.user.name}}
+                </p>
+            </div>
+            <div class="p-col-4">
+                <h6 p-text-bold>Thông tin liên lạc</h6>
+                <p>
+                    {{order.phone}}
+                </p>
+            </div>
+        </div>
+    </p-panel>
+  </p-card>
+</div>

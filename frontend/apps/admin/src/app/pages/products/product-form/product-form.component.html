@@ -1,0 +1,109 @@
+<p-toast></p-toast>
+<div class="admin-page">
+    <p-card [header]="editMode ? 'Cập nhật sản phẩm' : 'Thêm sản phẩm'" 
+            subheader="Bạn có thể thêm hoặc chỉnh sửa sản phẩm ở đây.">Content
+        <div class="p-grid p-mb-5">
+            <div class="p-col-12">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left"></div>
+                    <div class="p-toolbar-group-right">
+                        <p-button [label]="editMode ? 'Cập nhật' : 'Tạo'" 
+                                  icon="pi pi-plus"
+                                  styleClass="p-button-primary p-mr-2"
+                                  (click)="onSubmit()">
+                        </p-button>
+                        
+                        <p-button label="Hủy" 
+                                  icon="pi pi-arrow-circle-left"
+                                  styleClass="p-button-secondary"
+                                  (click)="onCancle()"
+                                  >
+                        </p-button>
+                    </div>
+                </p-toolbar>
+            </div>
+        </div>
+        <div class="p-grid">
+            <div class="p-col-12">
+                <form [formGroup]="form">
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col">
+                            <label for="name">Tên</label>
+                            <input formControlName="name" id="name" type="text" pInputText> 
+                            <small *ngIf="productForm.name.invalid && isSubmitted" class="p-error">Bắt buộc</small>
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="brand">Thương hiệu</label>
+                            <input formControlName="brand" id="brand" type="text" pInputText> 
+                            <small *ngIf="productForm.brand.invalid && isSubmitted" class="p-error">Bắt buộc</small>
+                        </div>
+                        <div class="p-field p-col">
+                            <label for="price">Giá</label><br />
+                            <p-inputNumber formControlName="price" mode="decimal" [useGrouping]="false">
+                            </p-inputNumber>
+                            <small *ngIf="productForm.price.invalid && isSubmitted" class="p-error"
+                              >Bắt buộc</small
+                            >
+                          </div>
+                    </div>
+                    <div class="p-fluid p-formgrid p-grid">
+                        <div class="p-field p-col-4">
+                            <label for="countInStock">Số lượng</label><br />
+                            <p-inputNumber formControlName="countInStock" mode="decimal" [useGrouping]="false">
+                            </p-inputNumber>
+                            <small *ngIf="productForm.countInStock.invalid && isSubmitted" class="p-error"
+                              >Bắt buộc </small
+                            >
+                          </div>
+                          <div class="p-field p-col-4">
+                            <label for="category">Danh mục sản phẩm</label><br />
+                            <p-dropdown
+                                [options]="categories"
+                                formControlName="category"
+                                optionLabel="name"
+                                optionValue="id"
+                                [filter]="true"
+                                filterBy="name"
+                                [showClear]="true"
+                                placeholder="Chọn một danh mục sản phẩm"
+                            ></p-dropdown>
+              
+                            <small *ngIf="productForm.category.invalid && isSubmitted" class="p-error"
+                              >Bắt buộc</small
+                            >
+                          </div>
+                        <div class="p-field p-col-4">
+                            <label for="isFeatured">Sản phẩm nổi bật</label><br />
+                            <p-inputSwitch formControlName="isFeatured"></p-inputSwitch>
+                          </div>
+                        <div class="p-field p-col-12">
+                            <label for="description">Giới thiệu sản phẩm</label><br />
+                            <textarea
+                              pInputTextarea
+                              formControlName="description"
+                              [rows]="7"
+                              [cols]="30"
+                            ></textarea>
+                            <small *ngIf="productForm.description.invalid && isSubmitted" class="p-error"
+                              >Bắt buộc</small
+                            >
+                          </div>
+                          <div class="p-field p-col-12">
+                              <label for="richDescription">Mô tả chi tiết sản phẩm</label> <br/>
+                              <p-editor formControlName="richDescription" [style]="{'height':'320px'}"></p-editor>
+                          </div>
+                          <div class="p-field p-col-12">
+                              <label for="name">Ảnh chính</label>
+                              <input type="file" class="p-inputtext" accept="image/*" (change)="onImageUpload($event)">
+                              <small *ngIf="productForm.image.invalid && isSubmitted" class="p-error"
+                              >Bắt buộc </small>
+                              <div class="p-col-2 p-mt-2 p-pl-0">
+                                  <img style="width: 100%;" [src]="imageDisplay" alt="">
+                              </div>
+                          </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </p-card>
+</div>

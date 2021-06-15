@@ -1,0 +1,46 @@
+<div class="login-register">
+    <div class="login-register-panel">
+        <div class="p-grid">
+            <div class="p-col-6">
+                <img src="assets/images/login-photo.png">
+            </div>
+            <div class="p-col-6 p-p-5">
+                <h3>
+                    Xin chào!
+                </h3>
+                <h2>
+                    Đăng nhập
+                </h2>
+                <form [formGroup]="loginFormGroup">
+                    <div class="p-grid p-mt-6">
+                        <div class="p-col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                <input type="text" formControlName="email" pInputText placeholder="Email">         
+                            </div>
+                            <small *ngIf="loginForm.email.invalid && isSubmitted" class="p-error">
+                                <span *ngIf="loginForm.email.errors.required">Bắt buộc</span>
+                                <span *ngIf="loginForm.email.errors.email">Email không hợp lệ</span>
+                            </small>
+                        </div>
+                        <div class="p-col-12">
+                            <div class="p-inputgroup">
+                                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                                <input type="password" formControlName="password" pInputText placeholder="Mật khẩu">         
+                            </div>
+                            <small *ngIf="loginForm.password.invalid && isSubmitted" class="p-error">
+                                Bắt buộc
+                            </small>
+                        </div>
+                        <div class="p-col-12">
+                            <p-button label="Đăng nhập" styleClass="full-btn" (onClick)="onSubmit()"></p-button>
+                        </div>
+                        <div class="p-col-12" *ngIf="isSubmitted && authError">
+                            <small class="p-error">{{authMessage}}</small>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

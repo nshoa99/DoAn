@@ -1,0 +1,17 @@
+.nav{
+    li {
+        margin-top: 15px;
+        list-style: none;
+        display: inline-block;
+        margin-right: 15px;
+
+        a{
+            color: var(--surface-500);
+            cursor: pointer;
+            &:hover{
+                color: #ff3a00;
+            }
+
+        }
+    }
+}

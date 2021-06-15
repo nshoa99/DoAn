@@ -1,0 +1,11 @@
+<div class="featured-products">
+    <h5 class="p-mt-4">
+        Sản phẩm nổi bật
+    </h5>
+
+    <div class="p-grid">
+        <div class="p-col-3" *ngFor="let product of featuredProducts">
+            <products-product-item [product]='product' ></products-product-item>
+        </div>
+    </div>
+</div>
