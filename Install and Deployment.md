@@ -9,7 +9,7 @@ LOCAL DEVELOPMENT GUIDELINE
 2. Setup Local Development Environment
   - Clone the project to local computer and go to the folder 
   ```
-  git clone https://github.com/nshoa99/DoAn 
+  git clone https://github.com/nshoa99/DoAn.git
   ```
   - Run ```make setup``` to install dependencies and setup the local DB 
   - Or you can import DB by using the files (in folder Mongodb) provided.
